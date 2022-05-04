@@ -125,11 +125,11 @@ public class CharacterController2D : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-    public void BreakBlock()
+    public void BreakBlock(Vector3 direction)
     {
         int layerMask = ~(1 << 6);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(0, -1, 0), 1000f, layerMask);
-        Debug.DrawRay(transform.position, new Vector3(0,-1,0),Color.yellow,1000f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 1000f, layerMask);
+        Debug.DrawRay(transform.position, direction, Color.yellow,1000f);
         if(hit.collider != null && hit.collider.gameObject != this.gameObject)
         {
             Debug.Log(hit.collider.name);

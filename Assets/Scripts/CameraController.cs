@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
 
     public Transform player;
     public bool Shake = false;
-    float magnitude = 1f;
+    float magnitude = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
