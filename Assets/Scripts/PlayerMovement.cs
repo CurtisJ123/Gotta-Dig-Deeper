@@ -26,12 +26,16 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         verticalMove = Input.GetAxisRaw("Vertical");
-
-    }
-
-    void FixedUpdate()
-    {
-
+        if(Input.GetKeyUp(KeyCode.A))
+        {
+            collided = false;
+            Debug.Log("Collided = " + collided + " Key Up A");
+        }
+        if(Input.GetKeyUp(KeyCode.D))
+        {
+            collided = false;
+            Debug.Log("Collided = " + collided + " Key Up D");
+        }
         if(Input.GetKeyDown(KeyCode.S))
         {
             timer = Time.time;
@@ -52,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         {
             timer = Time.time;
         }
-        else if(Input.GetKey(KeyCode.A))
+        else if(Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
             if(collided == true)
             {
@@ -60,9 +64,36 @@ public class PlayerMovement : MonoBehaviour
                 if(Time.time - timer > 3f)
                 {
                     timer = Time.time;
-                    Debug.Log("Down held for 3 seconds");
+                    Debug.Log("Left held for 3 seconds");
                     controller.BreakBlock(new Vector3(-1, 0, 0));
                     collided = false;
+                    Debug.Log("Collided = " + collided);
+                    mainCameraController.Shake = false;
+                }
+            }
+            else
+            {
+                controller.Move(horizontalMove * Time.fixedDeltaTime);
+                mainCameraController.Shake = false;
+                timer = Time.time;
+            }
+        }
+        else if(Input.GetKeyDown(KeyCode.D))
+        {
+            timer = Time.time;
+        }
+        else if(Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+        {
+            if(collided == true)
+            {
+                mainCameraController.Shake = true;
+                if(Time.time - timer > 3f)
+                {
+                    timer = Time.time;
+                    Debug.Log("Right held for 3 seconds");
+                    controller.BreakBlock(new Vector3(1, 0, 0));
+                    collided = false;
+                    Debug.Log("Collided = " + collided);
                     mainCameraController.Shake = false;
                 }
             }
@@ -78,17 +109,14 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(horizontalMove * Time.fixedDeltaTime);
             mainCameraController.Shake = false;
             timer = Time.time;
-        }
-        if(Input.GetKeyUp(KeyCode.A))
-        {
             collided = false;
-            Debug.Log("Collided = " + collided);
         }
-        if(Input.GetKeyUp(KeyCode.D))
-        {
-            collided = false;
-            Debug.Log("Collided = " + collided);
-        }
+    }
+
+    void FixedUpdate()
+    {
+        
+        
     }
 
     //public void OnCollisionExit2D(Collision2D collision)
@@ -108,7 +136,6 @@ public class PlayerMovement : MonoBehaviour
                 
                 collided = true;
                 Debug.Log("A key collided " + collided + " with " + collision.gameObject.name);
-                Debug.Log("Collided = " + collided);
             }
                 
         }
@@ -122,13 +149,13 @@ public class PlayerMovement : MonoBehaviour
                 {
                     collided = true;
                     Debug.Log("D key collided " + collided + " with " + collision.gameObject.name);
-                    Debug.Log("Collided = " + collided);
                 }
             }
             else
             {
                 collided = false;
                 Debug.Log("Collided = " + collided);
+                Debug.Log("Collided with not horizontal block" + collision.gameObject.name);
             }
         } 
         

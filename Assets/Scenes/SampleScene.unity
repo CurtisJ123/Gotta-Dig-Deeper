@@ -616,7 +616,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1678550241
 MonoBehaviour:
@@ -726,6 +726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1756305144}
   mainCamera: {fileID: 519420031}
+  horizontalMove: 0
   runSpeed: 40
   timer: 0
 --- !u!212 &1756305147
@@ -795,7 +796,7 @@ Transform:
   - {fileID: 1256238671}
   - {fileID: 1749396865}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1756305149
 Rigidbody2D:
@@ -860,60 +861,3 @@ CapsuleCollider2D:
   m_Offset: {x: -0.000000021622991, y: -0.18138681}
   m_Size: {x: 1.0011579, y: 0.5232649}
   m_Direction: 1
---- !u!1001 &1853224504456891151
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1853224504027039755, guid: a61eb62b648159f478bee953a5cc8f99, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853224504027039755, guid: a61eb62b648159f478bee953a5cc8f99, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853224504027039755, guid: a61eb62b648159f478bee953a5cc8f99, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853224504027039755, guid: a61eb62b648159f478bee953a5cc8f99, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853224504027039755, guid: a61eb62b648159f478bee953a5cc8f99, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853224504027039755, guid: a61eb62b648159f478bee953a5cc8f99, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853224504027039755, guid: a61eb62b648159f478bee953a5cc8f99, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853224504027039755, guid: a61eb62b648159f478bee953a5cc8f99, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853224504027039755, guid: a61eb62b648159f478bee953a5cc8f99, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853224504027039755, guid: a61eb62b648159f478bee953a5cc8f99, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853224504027039755, guid: a61eb62b648159f478bee953a5cc8f99, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1853224504027039757, guid: a61eb62b648159f478bee953a5cc8f99, type: 3}
-      propertyPath: m_Name
-      value: Dirt Block
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a61eb62b648159f478bee953a5cc8f99, type: 3}
