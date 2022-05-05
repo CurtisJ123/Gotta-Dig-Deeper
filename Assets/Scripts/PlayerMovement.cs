@@ -7,7 +7,9 @@ public class PlayerMovement : MonoBehaviour
 
     public CharacterController2D controller;
     public Camera mainCamera;
+    public GameObject GameController;
     CameraController mainCameraController;
+    GameController gameController;
     public float horizontalMove = 0f;
     float verticalMove = 0f;
     public float runSpeed = 40f;
@@ -19,11 +21,16 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         mainCameraController = mainCamera.GetComponent<CameraController>();
+        gameController = GameController.GetComponent<GameController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            gameController.EndDay();
+        }
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         verticalMove = Input.GetAxisRaw("Vertical");
         if(Input.GetKeyUp(KeyCode.A))

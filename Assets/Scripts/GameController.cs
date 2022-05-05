@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class GameController : MonoBehaviour
     GameObject dirtblockClone;
     GameObject oreClone;
     int NumberofClones = 0;
-
+    public List<GameObject> valuables = new List<GameObject>();
+    public int Money;
+    public TMP_Text moneyCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -45,16 +48,35 @@ public class GameController : MonoBehaviour
     }
     public void BreakBlock(GameObject block)
     {
+        valuables.Add(block);
+        block.gameObject.SetActive(false);
         if(block.transform.childCount > 0)
         {
             if(block.gameObject.transform.GetChild(0).name == "DiamondOre")
             {
                 Debug.Log("DiamondOre");
+                valuables.Add(block.gameObject.transform.GetChild(0).gameObject);
             }
         }
-        
-        
-        Destroy(block);
+    }
+    public void EndDay()
+    {
+        foreach(GameObject o in valuables)
+        {
+            if(o.name == "DiamondOre")
+            {
+                Debug.Log("Sold Diamond Ore");
+                Money += 10;
+            }
+            if(o.name.Contains("DirtBlockClone") == true)
+            {
+                Debug.Log("Sold Dirt");
+                Money += 1;
+            }
+            Destroy(o);
+        }
+        valuables.Clear();
+        moneyCounter.text = "Money: " + Money;
     }
     public void nextLevel()
     {
