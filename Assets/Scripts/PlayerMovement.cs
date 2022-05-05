@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 40f;
     public float timer;
     private bool collided;
+    public float miningSpeed;
 
 
     // Start is called before the first frame update
@@ -51,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         else if(Input.GetKey(KeyCode.S))
         {
             mainCameraController.Shake = true;
-            if(Time.time - timer > 3f)
+            if(Time.time - timer > miningSpeed)
             {
                 timer = Time.time;
                 Debug.Log("Down held for 3 seconds");
@@ -68,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
             if(collided == true)
             {
                 mainCameraController.Shake = true;
-                if(Time.time - timer > 3f)
+                if(Time.time - timer > miningSpeed)
                 {
                     timer = Time.time;
                     Debug.Log("Left held for 3 seconds");
@@ -94,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
             if(collided == true)
             {
                 mainCameraController.Shake = true;
-                if(Time.time - timer > 3f)
+                if(Time.time - timer > miningSpeed)
                 {
                     timer = Time.time;
                     Debug.Log("Right held for 3 seconds");
@@ -125,12 +126,6 @@ public class PlayerMovement : MonoBehaviour
         
         
     }
-
-    //public void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    collided = false;
-    //    Debug.Log("Collided = " + collided + " Left collider " + collision.gameObject.name);
-    //}
     void OnCollisionEnter2D(Collision2D collision)
     {
         int layerMask = ~(1 << 6);
@@ -165,49 +160,5 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("Collided with not horizontal block" + collision.gameObject.name);
             }
         } 
-        
-        //if(Input.GetKey(KeyCode.A))
-        //{
-        //    collided = true;
-        //    int layerMask = ~(1 << 6);
-        //    RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(-1f, 0f, 0f), 1000f, layerMask);
-        //    Debug.DrawRay(transform.position, new Vector3(-1f, 0f, 0f), Color.yellow, 1000f);
-        //    if(hit.collider != null && hit.collider.gameObject != this.gameObject)
-        //    {
-        //        if(hit.collider.gameObject == collision.gameObject)
-        //        {
-        //            Debug.Log("Hit is same as collider " + collision.gameObject.name + " " + hit.collider.name);
-        //            if(hit.collider.gameObject.layer == 7)
-        //            {
-        //                if(Time.time - timer > 3f)
-        //                {
-        //                    timer = Time.time;
-        //                    Debug.Log("Down held for 3 seconds");
-        //                    controller.BreakBlock(new Vector3(-1f, 0f, 0f));
-        //                    mainCameraController.Shake = false;
-        //                }
-
-        //            }
-        //        }
-        //    }
-
-        //}
-        //if(Input.GetKey(KeyCode.D))
-        //{
-        //    int layerMask = ~(1 << 6);
-        //    RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(1f, 0f, 0f), 1000f, layerMask);
-        //    Debug.DrawRay(transform.position, new Vector3(1f, 0f, 0f), Color.yellow, 1000f);
-        //    if(hit.collider != null && hit.collider.gameObject != this.gameObject)
-        //    {
-        //        if(hit.collider.gameObject == collision.gameObject)
-        //        {
-        //            Debug.Log("Hit is same as collider " + collision.gameObject.name + " " + hit.collider.name);
-        //            if(hit.collider.gameObject.layer == 7)
-        //            {
-        //                controller.BreakBlock(new Vector3(1f, 0f, 0f));
-        //            }
-        //        }
-        //    }
-        //}
     }
 }
