@@ -59,9 +59,9 @@ public class CharacterController2D : MonoBehaviour
                     OnLandEvent.Invoke();
             }
         }
-        if(transform.position.y < gameController.level * (-1.28f))
+        if(transform.position.y < gameController.layer * (-1.28f))
         {
-            gameController.nextLevel();
+            gameController.nextLayer();
             
         }
     }

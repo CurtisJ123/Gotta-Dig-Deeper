@@ -6,15 +6,19 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
 
-    public GameObject dirt;
-    public GameObject ore;
-    public int level = 0;
-    GameObject dirtblockClone;
+    public GameObject blockPrefab;
+    public GameObject orePrefab;
+    public GameObject blockBackgroundPrefab;
+    public int layer = 0;
+    GameObject blockClone;
     GameObject oreClone;
+    GameObject blockBackgroundClone;
     int NumberofClones = 0;
     public List<GameObject> valuables = new List<GameObject>();
     public int Money;
     public TMP_Text moneyCounter;
+
+    public int Level;
 
     // Start is called before the first frame update
     void Start()
@@ -24,17 +28,18 @@ public class GameController : MonoBehaviour
         {
             for(int i = 0; i < 15; i++)
             {
-                dirtblockClone = Instantiate(dirt, new Vector3(-8.96f + (i * 1.28f), (j + 1) * -1.28f, 0f), Quaternion.identity);
+                blockClone = Instantiate(blockPrefab, new Vector3(-8.96f + (i * 1.28f), (j + 1) * -1.28f, 0f), Quaternion.identity);
+                blockBackgroundClone = Instantiate(blockBackgroundPrefab, new Vector3(-8.96f + (i * 1.28f), (j + 1) * -1.28f, 1f), Quaternion.identity);
+                blockBackgroundClone.name = "BlockBackgroundClone" + NumberofClones;
                 NumberofClones += 1;
-                dirtblockClone.name = "DirtBlockClone" + NumberofClones;
+                blockClone.name = "BlockClone" + NumberofClones;
                 rnd = Random.Range(1, 5);
                 if(rnd == 2)
                 {
-                    oreClone = Instantiate(ore, new Vector3(-8.96f + (i * 1.28f), (j + 1) * -1.28f, -1f), Quaternion.identity);
-                    oreClone.transform.SetParent(dirtblockClone.transform);
+                    oreClone = Instantiate(orePrefab, new Vector3(-8.96f + (i * 1.28f), (j + 1) * -1.28f, -1f), Quaternion.identity);
+                    oreClone.transform.SetParent(blockClone.transform);
                     oreClone.name = "DiamondOre";
                 }
-                
             }
         }
         
@@ -44,7 +49,10 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if((layer - 1) % 10 == 0)
+        {
+            Level = layer / 10;
+        }
     }
     public void BreakBlock(GameObject block)
     {
@@ -78,21 +86,23 @@ public class GameController : MonoBehaviour
         valuables.Clear();
         moneyCounter.text = "Money: " + Money;
     }
-    public void nextLevel()
+    public void nextLayer()
     {
-        level += 1;
+        layer += 1;
         int rnd;
         for(int i = 0; i < 15; i++)
         {
-            
-            dirtblockClone = Instantiate(dirt, new Vector3(-8.96f + (i * 1.28f), (level + 4) * -1.28f, 0f), Quaternion.identity);
+
+            blockClone = Instantiate(blockPrefab, new Vector3(-8.96f + (i * 1.28f), (layer + 4) * -1.28f, 0f), Quaternion.identity);
+            blockBackgroundClone = Instantiate(blockBackgroundPrefab, new Vector3(-8.96f + (i * 1.28f), (layer + 4) * -1.28f, 1f), Quaternion.identity);
+            blockBackgroundClone.name = "BlockBackgroundClone" + NumberofClones;
             NumberofClones += 1;
-            dirtblockClone.name = "DirtBlockClone" + NumberofClones;
+            blockClone.name = "BlockClone" + NumberofClones;
             rnd = Random.Range(1, 5);
             if(rnd == 2)
             {
-                oreClone = Instantiate(ore, new Vector3(-8.96f + (i * 1.28f), (level + 4) * -1.28f, -1f), Quaternion.identity);
-                oreClone.transform.SetParent(dirtblockClone.transform);
+                oreClone = Instantiate(orePrefab, new Vector3(-8.96f + (i * 1.28f), (layer + 4) * -1.28f, -1f), Quaternion.identity);
+                oreClone.transform.SetParent(blockClone.transform);
                 oreClone.name = "DiamondOre";
             }
         }

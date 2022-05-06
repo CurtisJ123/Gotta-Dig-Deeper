@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            transform.position = new Vector3(0 + (player.position.x / 10), player.position.y, -10f);
+            transform.position = new Vector3(0 /*+ (player.position.x / 10)*/, player.position.y, -10f);
         }
         
     }
