@@ -132,7 +132,7 @@ public class CharacterController2D : MonoBehaviour
         Debug.DrawRay(transform.position, direction, Color.yellow,1000f);
         if(hit.collider != null && hit.collider.gameObject != this.gameObject)
         {
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
             if(hit.collider.gameObject.layer == 7)
             {
                 gameController.BreakBlock(hit.collider.gameObject);

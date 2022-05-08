@@ -1162,6 +1162,7 @@ MonoBehaviour:
   valuables: []
   Money: 0
   moneyCounter: {fileID: 1132575590}
+  Level: 0
 --- !u!1 &1749396864
 GameObject:
   m_ObjectHideFlags: 0

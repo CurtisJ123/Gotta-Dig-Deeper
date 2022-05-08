@@ -9,16 +9,20 @@ public class GameController : MonoBehaviour
     public GameObject blockPrefab;
     public GameObject orePrefab;
     public GameObject blockBackgroundPrefab;
+    
     public int layer = 0;
     GameObject blockClone;
     GameObject oreClone;
     GameObject blockBackgroundClone;
     int NumberofClones = 0;
-    public List<GameObject> valuables = new List<GameObject>();
+    
     public int Money;
     public TMP_Text moneyCounter;
 
-    public int Level;
+    public int Level = 0;
+    int blockLevel = 0;
+
+    public List<GameObject> valuables = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +37,7 @@ public class GameController : MonoBehaviour
                 blockBackgroundClone.name = "BlockBackgroundClone" + NumberofClones;
                 NumberofClones += 1;
                 blockClone.name = "BlockClone" + NumberofClones;
+                blockClone.GetComponent<BlockController>().ChangeSrite(Level);
                 rnd = Random.Range(1, 5);
                 if(rnd == 2)
                 {
@@ -90,14 +95,19 @@ public class GameController : MonoBehaviour
     {
         layer += 1;
         int rnd;
+        
         for(int i = 0; i < 15; i++)
         {
-
+            if((layer + 4) % 10 == 0)
+            {
+                blockLevel = (layer + 4) / 10;
+            }
             blockClone = Instantiate(blockPrefab, new Vector3(-8.96f + (i * 1.28f), (layer + 4) * -1.28f, 0f), Quaternion.identity);
             blockBackgroundClone = Instantiate(blockBackgroundPrefab, new Vector3(-8.96f + (i * 1.28f), (layer + 4) * -1.28f, 1f), Quaternion.identity);
             blockBackgroundClone.name = "BlockBackgroundClone" + NumberofClones;
             NumberofClones += 1;
             blockClone.name = "BlockClone" + NumberofClones;
+            blockClone.GetComponent<BlockController>().ChangeSrite(blockLevel);
             rnd = Random.Range(1, 5);
             if(rnd == 2)
             {
